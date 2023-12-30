@@ -1,0 +1,53 @@
+import java.util.Random; // This class is for generationg random numbers
+import java.util.Scanner;
+public class Main
+{
+    public static void playGame(int targetNum)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\nGuess the number between 1 and 100");
+
+        for (int attempts = 1; attempts <= 10; attempts++) // 10 attempts to guess the number
+        {
+            System.out.print("Enter your guess: ");
+            int userGuess = sc.nextInt();
+
+            if (userGuess == targetNum)
+            {
+                  //If the guess is correct, Continue Playing & return to the main loop
+                System.out.println("Congratulations!.....\n   You guessed the correct number in " + attempts + " attempts.");
+                return;
+            }
+            else
+            {
+                  // If it is incorrect, provide feedback for guessing the number
+                System.out.println(userGuess < targetNum ? "Your guess is Too low! Try again." : "Your guess is Too high! Try again.");
+            }
+        }
+          // If the user reaches the more than 10 attempts,stop playing
+        System.out.println("Sorry, you've reached the maximum number of attempts. The correct number was: " + targetNum);
+        
+    }
+    public static void main(String[] args)
+    {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        System.out.println("Welcome to the Number Game!");
+        while (true)
+        {
+            int targetNum = random.nextInt(100) + 1;  //generating a random number
+            playGame(targetNum);  // to handle the current round
+
+            System.out.print("\nDo you want to play again? (yes/no): ");
+            
+            if (!scanner.next().equalsIgnoreCase("yes")) {
+                break; 
+            // exit the loop if the player doesn't want to play again
+            }
+        }
+        System.out.println("\nGame Over!");
+       
+    }
+
+}
